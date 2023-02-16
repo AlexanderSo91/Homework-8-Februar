@@ -27,7 +27,8 @@ public class RecipeController {
 
     @PostMapping
     public ResponseEntity<Recipe> save(@RequestBody Recipe recipe) {
-        return ResponseEntity.ok(recipeService.save(recipe));
+        Recipe recipeRs = recipeService.save(recipe);
+        return ResponseEntity.ok(recipeRs);
     }
     @Opperation( summary = "получение рецепта ")
 

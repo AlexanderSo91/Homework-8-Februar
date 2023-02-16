@@ -1,5 +1,7 @@
 package Opperation;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -13,4 +15,6 @@ public @interface Opperation {
     String method() default "";
 
     String summary() default "";
+
+    RequestBody requestBody() default @RequestBody;
 }
