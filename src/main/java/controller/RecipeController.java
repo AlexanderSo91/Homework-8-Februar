@@ -1,8 +1,7 @@
 package controller;
 
-import Opperation.Opperation;
-import Tag.Tag;
-import model.Ingredient;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import model.Recipe;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/recipe")
-@Tag(name = "Api рецепты", deskription = "CRUD рецепты")
+@Tag(name = "Api рецепты", description = "CRUD рецепты")
 public class RecipeController {
 
     private final RecipeService recipeService;
@@ -23,34 +22,45 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @Opperation( summary = "сохранение рецепта ")
-
+    @Operation(
+            summary = "Сохранение рецепта"
+    )
     @PostMapping
     public ResponseEntity<Recipe> save(@RequestBody Recipe recipe) {
         Recipe recipeRs = recipeService.save(recipe);
         return ResponseEntity.ok(recipeRs);
     }
-    @Opperation( summary = "получение рецепта ")
+
+    @Operation(
+            summary = "Получение рецепта по id"
+    )
 
     @GetMapping("/{id}")
     public ResponseEntity<Recipe> getById(@PathVariable Long id) {
         return ResponseEntity.of(recipeService.getById(id));
     }
-    @Opperation( summary = "обновление рецепта ")
+
+    @Operation(
+            summary = "Обновление рецепта"
+    )
 
     @PutMapping("/{id}")
     public ResponseEntity<Recipe> update(@PathVariable Long id, @RequestBody Recipe ingredient) {
-        return ResponseEntity.ok(recipeService.update(id,recipe));
+        return ResponseEntity.ok(recipeService.update(id, recipe));
     }
-    @Opperation( summary = "удаление рецепта ")
+
+    @Operation(
+            summary = "Удаление рецепта"
+    )
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Recipe> delete(@PathVariable Long id) {
         return ResponseEntity.ok(recipeService.delete(id));
     }
 
-    @Opperation( summary = "получение всех рецептов ")
-
+    @Operation(
+            summary = "Получение рецепта"
+    )
     @GetMapping("/{id}")
     public ResponseEntity<Map<Long, Recipe>> getAll() {
         return ResponseEntity.ok(recipeService.getAll());

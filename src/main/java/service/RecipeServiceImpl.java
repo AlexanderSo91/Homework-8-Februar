@@ -22,7 +22,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe save(Recipe recipe) {
-        if (validationService.validate(recipe))
+        if (!validationService.validate(recipe))
             throw new ValidationException(recipe.toString());
 
         return recipes.put(idCounter++, recipe);
@@ -35,7 +35,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Recipe update(Long id, Recipe recipe) {
-        if (validationService.validate(recipe))
+        if (!validationService.validate(recipe))
             throw new ValidationException(recipe.toString());
 
         return recipes.replace(id, recipe);
